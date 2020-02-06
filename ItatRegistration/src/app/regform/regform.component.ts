@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup, FormControl } from '@angular/forms';
 
+=======
+>>>>>>> c3af0433429c6514126b3d5922821d15f1860d35
 
 @Component({
   selector: 'app-regform',
@@ -8,12 +11,16 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./regform.component.css']
 })
 export class RegformComponent implements OnInit {
+<<<<<<< HEAD
   
   registrationForm: FormGroup;
+=======
+>>>>>>> c3af0433429c6514126b3d5922821d15f1860d35
 
   constructor() { }
 
   ngOnInit() {
+<<<<<<< HEAD
     this.registrationForm = new FormGroup({
       userinfo: new FormGroup({
         firstname: new FormControl(),
@@ -42,6 +49,8 @@ export class RegformComponent implements OnInit {
 
   onSubmit(){
     console.log(this.registrationForm);
+=======
+>>>>>>> c3af0433429c6514126b3d5922821d15f1860d35
   }
 
 }
