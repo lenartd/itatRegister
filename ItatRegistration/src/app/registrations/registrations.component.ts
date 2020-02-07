@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { RootObject } from './../entities/fullQA';
+import { UserService } from './../services/user.service';
+import { Router } from '@angular/router';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registrations',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationsComponent implements OnInit {
 
-  constructor() { }
+  users: Array<RootObject> = [];
 
-  ngOnInit() {
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'address'
+  ];
+
+  constructor(private userService: UserService, private router: Router) { }
+  rootobj: RootObject;
+
+
+  ngOnInit(): void {
+    this.userService.getRegistrations().subscribe(regs => {
+      this.users = regs;
+      console.log(regs);
+    });
   }
 
+  editUser(){}
+  deleteUser(){}
 }

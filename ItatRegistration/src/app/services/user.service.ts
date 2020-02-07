@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { RootObject } from './../entities/fullQA';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,16 @@ login(model:any){
     const token = localStorage.getItem('token');
     console.log(token);
     if(token != null || token != undefined){return true;} else{return false;}
+  }
+
+  getRegistrations():Observable<Array<RootObject>>{
+    return this.http.get<RootObject[]>(this.baseUrl + '/getAnswers/?token=' + localStorage.getItem('token'))
+      .pipe(
+      );
+  }
+
+  saveAnswers(regform:any){
+    return this.http.post(this.baseUrl + "/saveAnswers", regform).pipe(map((response: any) => {
+    }));
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { UserService } from './../services/user.service';
 
 @Component({
   selector: 'app-regform',
@@ -11,7 +11,7 @@ export class RegformComponent implements OnInit {
   
   registrationForm: FormGroup;
 
-  constructor() { }
+  constructor(private userservice: UserService) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -41,7 +41,12 @@ export class RegformComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
+    this.userservice.saveAnswers(this.registrationForm.value).subscribe(next =>{
+      console.log('registration saved successfully');
+    }, error =>{
+      console.log('failed to save registration');
+    })
   }
 
 }
