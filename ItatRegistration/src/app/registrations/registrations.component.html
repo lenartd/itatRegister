@@ -1,6 +1,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>E-mail</th>
       <th>Address</th>
@@ -9,8 +10,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
+      <td>{{user._id}}</td>
       <td>{{user.userinfo.firstname}}</td>
-      <td>{{user.userinfo.surename}}</td>
+      <td>{{user.userinfo.email}}</td>
       <td>{{user.userinfo.address}}</td>
       <td class="text-right text-nowrap">
         <button type="button" class="btn btn-secondary mx-1" (click)="editUser(user)">

@@ -44,4 +44,10 @@ login(model:any){
     return this.http.post(this.baseUrl + "/saveAnswers", regform).pipe(map((response: any) => {
     }));
   }
+
+  deleteRegistration(id:any){
+    return this.http.post(this.baseUrl + "/deleteRegistration/?token=" + localStorage.getItem('token'), {"id":id})
+    .pipe(map((response: any) => {
+    }));
+  }
 }

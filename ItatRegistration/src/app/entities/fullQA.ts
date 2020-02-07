@@ -23,6 +23,7 @@ export class QuestionAnswer {
 }
 
 export class RootObject {
+    _id:String;
     userinfo: UserInfo;
     questionanswer: QuestionAnswer;
 }

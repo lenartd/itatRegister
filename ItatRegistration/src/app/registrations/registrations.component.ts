@@ -31,5 +31,14 @@ export class RegistrationsComponent implements OnInit {
   }
 
   editUser(){}
-  deleteUser(){}
+
+  deleteUser(user: RootObject) {
+    const originalId = user._id;
+    this.userService.deleteRegistration(user._id).subscribe(() => {
+      this.users.splice(
+        this.users.findIndex(el => el._id === originalId),
+        1
+      );
+    });
+  }
 }
