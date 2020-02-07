@@ -1,18 +1,21 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" style="width: 1000px; margin: auto;" class="form-group" >
     <div>
-        <h2>Registration2019<br><small>(20. 9. 2019 - 24. 9. 2019). </small></h2>
+        <h2>Registration for ITAT 2020<br><small>(20. 9. 2020 - 24. 9. 2020). </small></h2>
     </div>
 
-    <div>
+    <!-- <div> future hotel info 
         <label for="toptitle">Hotel Zornička, Donovaly</label>
         <div name="toptitle" id="toptitle" class="form-group">
                 <img src="assets/img/zornicka.jpg"style="max-width: 100%;">
         </div>
-    </div>
+    </div> -->
 
     <div>
-        <label for="regdetails">Registration details</label>
         <div name="regdetails" id="regdetails" class="form-group">
+            Registration details
+            <p id="redtext">
+                * Required
+            </p>
         </div>
     </div>
 
@@ -21,14 +24,20 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="firstname">Firstname</label>
+                    <label for="firstname">Firstname:<span id="star">*</span></label>
                     <input  type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname" required>
+                    <div id="invalidtext" *ngIf="registrationForm.get('userinfo').get('firstname').invalid && registrationForm.get('userinfo').get('firstname').touched">
+                        Name is a required field!
+                      </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="surename">Surname</label>
+                    <label for="surename">Surname:<span id="star">*</span></label>
                     <input type="text" name="surename" id="surename" class="form-control" formControlName="surename" required>
+                    <div id="invalidtext" *ngIf="!registrationForm.get('userinfo').get('surename').valid && registrationForm.get('userinfo').get('surename').touched">
+                        Surname is a required field!
+                      </div>
                 </div>
             </div>
         </div>
@@ -36,22 +45,31 @@
         <div class="row">
             <div class="col">
                 <div class="form-group" >
-                    <label for="email">Email</label>
+                    <label for="email">Email:<span id="star">*</span></label>
                     <input type="text" name="email" id="email" class="form-control" formControlName="email" required>
+                    <div id="invalidtext" *ngIf="!registrationForm.get('userinfo').get('email').valid && registrationForm.get('userinfo').get('email').touched">
+                        Invalid Email!
+                      </div>
                 </div>
             </div> 
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="organisation">Organisation</label>
+                    <label for="organisation">Organisation:<span id="star">*</span></label>
                     <input type="text" name="organisation" id="organisation" class="form-control" formControlName="organisation" required>
+                    <div id="invalidtext" *ngIf="!registrationForm.get('userinfo').get('organisation').valid && registrationForm.get('userinfo').get('organisation').touched">
+                        Organisation is required field!
+                      </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Address:<span id="star">*</span></label>
                     <input type="text" name="address" id="address" class="form-control" formControlName="address" required>
+                    <div id="invalidtext" *ngIf="!registrationForm.get('userinfo').get('address').valid && registrationForm.get('userinfo').get('address').touched">
+                        Address is required field!
+                      </div>
                 </div>
             </div>
         </div>
@@ -79,7 +97,8 @@
 
 
     <div formGroupName="question">
-        <label>We offer two registration variants: A = full conference, B = 2 nights. Student registration is available for both variants. (From 2nd August 2019)</label>
+        <label >We offer two registration variants: <span id="star">*</span></label>
+        <label> A = full conference, B = 2 nights. Student registration is available for both variants. (From 2nd August 2019)</label>
         <div class="form-group">
             <p class="helpblock">-&gt; Note: Workshop registrations are available only during the worshops days. The program of workshop CIDM is scheduled 4 days.</p>
             <div class="form-check">
@@ -156,11 +175,16 @@
                 </label>
             </div>
         </div>
+
+        <div id="invalidtext" *ngIf="!registrationForm.get('question').get('choices').valid && registrationForm.get('question').get('choices').touched">
+            Registration variant is required field!
+          </div>
+      
      </div>
 
 
         <div>
-            <label >Payment method:</label>
+            <label >Payment method:<span id="star">*</span></label>
             <div class="form-group">
                 <div class="form-check">
                 <div class="form-check">
@@ -174,11 +198,14 @@
                     </label>
                 </div>
             </div>
+            <div id="invalidtext" *ngIf="!registrationForm.get('question').get('paymentMethod').valid && registrationForm.get('question').get('paymentMethod').touched">
+                PaymentMethod method is required field!
+              </div>
         </div>
     </div>
 
     <div>
-        <label >Time of arrival:</label>
+        <label >Time of arrival:<span id="star">*</span></label>
         <div class="form-group">
             <p class="helpblock">Food related question. Workshops start with dinner and end with breakfast. If you choose an earlier arrival or a later departure, the additional food will be priced.</p>
             <select class="form-control" id="arrivalselect" name="timeOfArrival" formControlName="timeOfArrival"  >
@@ -194,10 +221,15 @@
                 <option value="23. 9. (Monday) - start with dinner">23. 9. (Monday) - start with dinner</option>
             </select>
         </div>
+
+        <div id="invalidtext" *ngIf="!registrationForm.get('question').get('timeOfArrival').valid && registrationForm.get('question').get('timeOfArrival').touched">
+            Time of arrival is required field!
+          </div>
+
     </div>
     
     <div>
-        <label>Time of departure</label>
+        <label>Time of departure:<span id="star">*</span></label>
         <div class="form-group">
             <p class="help-block">Food related question.</p>
             <select class="form-control" id="departureselect" name="timeOfDeparture" formControlName="timeOfDeparture" >
@@ -213,10 +245,15 @@
                 <option value="24. 9. (Tuesday) - end with breakfast">24. 9. (Tuesday) - end with breakfast</option>
             </select>
         </div>
+
+        <div id="invalidtext" *ngIf="!registrationForm.get('question').get('timeOfDeparture').valid && registrationForm.get('question').get('timeOfDeparture').touched">
+            Time of departure is required field!
+          </div>
+
     </div>
 
     <div>
-        <label>T-shirt size</label>
+        <label>T-shirt size:<span id="star">*</span></label>
         <div class="form-group">
             <div class="form-check">
                 <div class="form-check">
@@ -250,6 +287,11 @@
                 </label>
             </div>
         </div>
+
+        <div id="invalidtext" *ngIf="!registrationForm.get('question').get('tShirtSize').valid && registrationForm.get('question').get('tShirtSize').touched">
+            T-shirt size is required field!
+          </div>
+
     </div>
  </div>
 
@@ -333,7 +375,7 @@
 
     <div>
         <div class="form-group">
-            <label >Special requests</label>
+            <label >Special requests<span id="star">*</span></label>
         </div>
         <label >Do you have special requests regarding the food?</label>
         <div class="form-group">
@@ -370,6 +412,11 @@
                 
             </div>
         </div>
+
+        <div id="invalidtext" *ngIf="!registrationForm.get('question').get('diets').valid && registrationForm.get('question').get('diets').touched">
+            Food diet is required field!
+          </div>
+
      </div>
  </div>
 
@@ -382,7 +429,7 @@
 
    
 </div>
-    <input class="btn btn-primary" type="submit" value="Submit">
+    <input class="btn btn-primary" type="submit" [disabled]="registrationForm.invalid" value="Submit">
 </form>
 
 
